@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!-- jquery slim 지우고 minified 추가 -->
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    {% block script %}
+    {% endblock %}
+    <style>
+        .card { width: 260px; height: 370px; position: relative; top: 2px; margin: 10px;}
+        .card-img-top { width : 250px; height: 200px; background-color : pink; position: relative; left: 3px; top: 3px;  }
+        .card-text { font-size : 13px; color :gray;}
+        .navbar-brand { font-size : 30px; position: relative; left: 50%; font-weight:bold; color : white;}
+        .basket { width: 50px; height: 25px; }
+        .nav-link { font-size: 13px; }
+
+        .alert-info { font-weight: bold; }
+        #basket { font-color: white; font-size: 11px; width: 100px; float: left; background-color: black; font-weight:bold; border:none;}
+
+        .card-body { background-color : white; display: block; float: left;}
+        body { background-color : black; }
+        .list-group > a { color : black; font-weight: bold; }
+        .list-group > a:hover { background-color:pink; }
+        #rara { color:red; }
+
+
+
+
+
+    </style>
+    {% block style %}
+    {% endblock %}
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-black">
+  <a class="navbar-brand text-white" href="/"># S W A V Y </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+    <ul class="navbar-nav justify-content-end">
+        <li class="nav-item">
+            <a class ="nav-link text-white" href="#" id="rara"> 주문/배송조회 </a>
+
+        </li>
+        <li class="nav-item">
+            {% if user.is_authenticated %}
+            <a class="nav-link text-white" href="{% url 'account_logout' %}">로그아웃</a>
+            {% else %}
+            <a class="nav-link" href="{% url 'account_login' %}">로그인</a>
+            {% endif %}
+    <!--<a class="nav-link" href="#">하이</a>-->
+        </li>
+        <li class="nav-item">
+        <a class="nav-link btn btn-outline-success text-white" href="{% url 'cart:detail' %}" >CART
+<!--            {% if cart|length > 0 %}-->
+<!--               ${{cart.get_total_price}} with {{cart|length}} items-->
+<!--            {% else %}-->
+
+<!--            {% endif %} -->
+        </a>
+        </li>
+
+    </ul>
+  </div>
+</nav>
+<div class="container">
+{% block content %}
+{% endblock %}
+</div>
+
+</body>
+</html>
