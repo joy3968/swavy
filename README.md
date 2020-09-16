@@ -1,1 +1,1 @@
-### 쇼핑몰 만들기 with django
+### 쇼핑몰 만들기 with django, mysql
